@@ -1,4 +1,5 @@
-const { screen, dest, parallel } = require("gulp");
+const { src, dest, parallel } = require("gulp");
+const watch = require("gulp-watch");
 const rename = require("gulp-rename");
 const minifyJS = require("gulp-uglify");
 const minifyCSS = require("gulp-uglifycss");
@@ -19,7 +20,7 @@ function javascript() {
 }
 
 function css() {
-  return src("src/css/*.css")
+  return src("src/css/*.css", { ignoreInitial: false })
     .pipe(cssImport())
     .pipe(sass())
     .pipe(minifyCSS())
